@@ -12,7 +12,6 @@ KeyboardInputManager.prototype.on = function (event, callback) {
 };
 
 KeyboardInputManager.prototype.emit = function (event, data) {
-	navigator.notification.vibrate(500);
   var callbacks = this.events[event];
   if (callbacks) {
     callbacks.forEach(function (callback) {
