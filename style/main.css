@@ -639,3 +639,10 @@ hr {
     margin-top: 90px !important; }
   .game-message .lower {
     margin-top: 30px !important; } }
+
+.pull-right{
+	float:right;
+}
+.pull-left{
+	float:left;
+}
