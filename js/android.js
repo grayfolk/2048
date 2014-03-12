@@ -7,12 +7,10 @@ var app = {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+		window.requestAnimationFrame(function () {
+			new GameManager(4, KeyboardInputManager, HTMLActuator, LocalScoreManager);
+		});
     },
-    receivedEvent: function(id) {
-		alert (id);
-		navigator.notification.vibrate(500);
-    }
 };
 
 /*var watchID = null;
