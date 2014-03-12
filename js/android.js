@@ -1,54 +1,15 @@
-var app = {
-	watchID: null,
-    initialize: function() {
-        this.bindEvents();
-    },
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    onDeviceReady: function() {
-		this.startWatch();
-		navigator.notification.vibrate(500);
-		window.requestAnimationFrame(function () {
-			new GameManager(4, KeyboardInputManager, HTMLActuator, LocalScoreManager);
-		});
-    },
-	startWatch: function() {
-		var options = { frequency: 100 };
-        this.watchID = navigator.accelerometer.watchAcceleration(this.onSuccess, this.onError, options);
-	},
-	stopWatch: function () {
-        if (this.watchID) {
-            navigator.accelerometer.clearWatch(this.watchID);
-            this.watchID = null;
-        }
-    },
-	onSuccess: function (acceleration) {
-        var element = document.getElementById('accelerometer');
-        element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
-                            'Acceleration Y: ' + acceleration.y + '<br />' +
-                            'Acceleration Z: ' + acceleration.z + '<br />' +
-                            'Timestamp: '      + acceleration.timestamp + '<br />';
-    },
-	onError: function () {
-        alert('onError!');
-    },
-};
+var watchID = null;
 
-/*var watchID = null;
+document.addEventListener('deviceready', onDeviceReady, false);
 
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady(){
+	// startWatch();
+	navigator.notification.vibrate(500);
+	window.requestAnimationFrame(function () {
+		new GameManager(4, KeyboardInputManager, HTMLActuator, LocalScoreManager);
+	});
+}
 
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-        startWatch();
-    }
-
-    // Start watching the acceleration
-    //
     function startWatch() {
 
         // Update acceleration every 3 seconds
@@ -81,5 +42,3 @@ var app = {
     function onError() {
         alert('onError!');
     }
-
-*/
